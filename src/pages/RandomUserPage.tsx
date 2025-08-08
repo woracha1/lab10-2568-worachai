@@ -3,9 +3,9 @@ import { cleanUser } from "../libs/CleanUser";
 import axios from "axios";
 import { useState } from "react";
 export default function RandomUserPage() {
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [genAmount, setGenAmount] = useState(1  );
+  const [genAmount, setGenAmount] = useState<number>(1);
 
   const generateBtnOnClick = async () => {
     setIsLoading(true);
@@ -31,9 +31,8 @@ export default function RandomUserPage() {
           className="form-control text-center"
           style={{ maxWidth: "100px" }}
           type="number"
-             onChange={(event: any) => setGenAmount(event.target.value)}
+            onChange={(event) => setGenAmount(Number(event.target.value))}
             value={genAmount}
-          
         />
         <button className="btn btn-dark" onClick={generateBtnOnClick}>
           Generate
