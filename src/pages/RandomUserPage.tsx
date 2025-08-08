@@ -17,8 +17,9 @@ export default function RandomUserPage() {
     //Your code here
     //Process result from api response with map function. Tips use function from /src/libs/CleanUser
     //Then update state with function : setUsers(...)
-    const cleanUsers = users.map(cleanUser)
-    setUsers(cleanUsers);
+    const cleanedUser = users.map((user:[]) => cleanUser(user));
+    setUsers(cleanedUser);
+    setIsLoading(false);
   };
 
   return (
@@ -41,8 +42,13 @@ export default function RandomUserPage() {
       {isLoading && (
         <p className="display-6 text-center fst-italic my-4">Loading ...</p>
       )}
-      {users && !isLoading && users.map((user:any) => (
-        <UserCard key = {user.email} name = {user.name} imgUrl={user.imgUrl} address={user.address} email={ user.email}/>
+      {users && !isLoading && users.map((user:any) =>(
+      <UserCard 
+        key = {user.email}
+        name = {user.name} 
+        imgUrl = {user.imgUrl} 
+        address = {user.address} 
+        email = {user.email}/>
       ))}
     </div>
   );
